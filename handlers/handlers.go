@@ -20,7 +20,21 @@ func Manejadores(){
 	router.HandleFunc("/verperfil",middlew.ChequeoBD(middlew.ValidarJWT(routers.VerPerfil))).Methods("GET")
 	router.HandleFunc("/modificarPerfil",middlew.ChequeoBD(middlew.ValidarJWT(routers.ModificarPerfil))).Methods("PUT")
 	router.HandleFunc("/tweet",middlew.ChequeoBD(middlew.ValidarJWT(routers.GraboTweet))).Methods("POST")
-	router.HandleFunc("/leoTweet",middlew.ChequeoBD(middlew.ValidarJWT(routers.leoTweets))).Methods("GET")
+	router.HandleFunc("/leoTweet",middlew.ChequeoBD(middlew.ValidarJWT(routers.LeoTweets))).Methods("GET")
+	
+	router.HandleFunc("/eliminarTweet",middlew.ChequeoBD(middlew.ValidarJWT(routers.EliminarTweet))).Methods("delete")
+	router.HandleFunc("/subirAvatar",middlew.ChequeoBD(middlew.ValidarJWT(routers.SubirAvatar))).Methods("POST")
+	router.HandleFunc("/obtenerAvatar",middlew.ChequeoBD(routers.ObtenerAvatar)).Methods("GET")
+	router.HandleFunc("/subirBanner",middlew.ChequeoBD(middlew.ValidarJWT(routers.SubirBanner))).Methods("POST")
+	router.HandleFunc("/obtenerBanner",middlew.ChequeoBD(routers.ObtenerAvatar)).Methods("GET")
+
+	router.HandleFunc("/altaRelacion",middlew.ChequeoBD(middlew.ValidarJWT(routers.AltaRelacion))).Methods("POST")
+	router.HandleFunc("/bajaRelacion",middlew.ChequeoBD(middlew.ValidarJWT(routers.BajaRelacion))).Methods("DELETE")
+	router.HandleFunc("/consultaRelacion",middlew.ChequeoBD(middlew.ValidarJWT(routers.ConsultaRelacion))).Methods("GET")
+
+	router.HandleFunc("/listaUsuarios",middlew.ChequeoBD(middlew.ValidarJWT(routers.ListaUsuarios))).Methods("GET")
+	router.HandleFunc("/leoTweetsSeguidores",middlew.ChequeoBD(middlew.ValidarJWT(routers.LeoTweetsSeguidores))).Methods("GET")
+
 	PORT := os.Getenv("PORT") //Verifica si en el sistema operativo hay un puerto
 	if PORT == ""{
 		PORT = "8080"
